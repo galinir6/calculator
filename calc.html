@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Calculator</h2>
+    <input type="text" id="res"><br>
+
+    <button onclick="addDigit(9)">9</button>
+    <button onclick="addDigit(8)">8</button>
+    <button onclick="addDigit(7)">7</button><button onclick="oper('+')">+</button><br>
+    <button onclick="addDigit(6)">6</button>
+    <button onclick="addDigit(5)">5</button>
+    <button onclick="addDigit(4)">4</button><button onclick="oper('-')">-</button><br>
+    <button onclick="addDigit(3)">3</button>
+    <button onclick="addDigit(2)">2</button>
+    <button onclick="addDigit(1)">1</button><button onclick="oper('*')">*</button><br>
+    <button onclick="clearField()">C</button><button onclick="addDigit(0)">0</button><button
+        onclick="calculate()">=</button>
+    <button onclick="oper('/')">/</button>
+
+    <script>
+        let clearFlag = false
+        let num1 = 0
+        let lastOper = ""
+
+        function addDigit(digit) {
+            if (clearFlag) {
+                res.value = ""
+                clearFlag = false
+            }
+            res.value += digit
+
+        }
+
+        function oper(op) {
+            clearFlag = true
+            num1 = res.value
+            lastOper = op
+
+        }
+
+        function calculate() {
+            if (lastOper == '+') {
+                res.value = parseInt(num1) + parseInt(res.value)
+
+            } else if (lastOper == '-') {
+                res.value = parseInt(num1) - parseInt(res.value)
+            } else if (lastOper == '*') {
+                res.value = parseInt(num1) * parseInt(res.value)
+
+            } else {
+                res.value = parseInt(num1) / parseInt(res.value)
+            }
+
+            clearFlag = true
+        }
+
+        function clearField() {
+            clearFlag = false
+            num1 = 0
+            lastOper = ""
+            res.value = ""
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
